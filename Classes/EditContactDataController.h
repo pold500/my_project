@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BookRecordDataProtocol.h"
 
 @interface EditContactDataController : UIViewController
-@property (nonatomic,strong) id<BookRecordDataProtocol, UITableViewDataSource> dataSource;
+@property (weak, nonatomic) IBOutlet UITextField *nameLabelOutlet;
+@property (weak, nonatomic) IBOutlet UITextField *secondNameLabelOutlet;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumberLabelOutlet;
+- (IBAction)doneButtonAction:(id)sender;
+
 @end

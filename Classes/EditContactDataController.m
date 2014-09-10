@@ -7,18 +7,20 @@
 //
 
 #import "EditContactDataController.h"
+#import "SingleRecordSingleton.h"
+#import "BookRecord.h"
 
 @interface EditContactDataController ()
-
+@property (nonatomic, strong) BookRecord* data;
 @end
 
 @implementation EditContactDataController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:coder];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -27,6 +29,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _data =                     [[SingleRecordSingleton getData] data ];
+    [_nameLabelOutlet           setText:_data.name        ];
+    [_secondNameLabelOutlet     setText:_data.second_name ];
+    [_phoneNumberLabelOutlet    setText:_data.phoneNumber ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,5 +51,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)doneButtonAction:(id)sender {
+    _data.name = _nameLabelOutlet.text;
+    _data.second_name = _secondNameLabelOutlet.text;
+    _data.phoneNumber = _phoneNumberLabelOutlet.text;
+    SingleRecordSingleton.getData.data = _data;
+    [[self navigationController ] popToRootViewControllerAnimated:YES];
+    
+}
+
+-(void)viewDidUnload
+{
+    
+}
 
 @end

@@ -21,6 +21,11 @@
 //
 //@end
 
+#import "SingleRecordSingleton.h"
+
+@interface BookRecordDetailedViewController()
+- (void) goToEditContact;
+@end
 
 @implementation BookRecordDetailedViewController
 
@@ -34,18 +39,21 @@
     //perfrom a transition? through a segue?
     //pass the record to the newly created uiview and\or controller
     //so it can modify it and bring back here
-    
+    [self goToEditContact];
 }
 
 -(void)setRecord:(BookRecord*)record
 {
     _record = record;
+    SingleRecordSingleton.getData.data = _record;
 }
 
 
 - (void) goToEditContact
 {
-    
+    id wc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil]
+              instantiateViewControllerWithIdentifier:@"EditContactDataID"];
+    [self.navigationController pushViewController:wc animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -57,6 +65,7 @@
     [[self editButtonOutlet       ] setTitle:@"Edit" forState:UIControlStateNormal  ];
     
 }
+
 
 - (void)myTransitionDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
     

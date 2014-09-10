@@ -18,15 +18,14 @@
     if (aRecord != _record) {
 		_record = aRecord;
 	}
-	
-    [self.textLabel setText: _record.name ];
-    [self.detailTextLabel setText: _record.second_name ];
     
-	//UILabel *labelView = (UILabel *)[self.contentView viewWithTag:2];
-    //labelView.text = _record.name;
+	UILabel *namelabelView = (UILabel *)[self.contentView viewWithTag:1];
+    namelabelView.text = _record.name;
+    [namelabelView setNeedsDisplay];
     
-	//[elementTileView setNeedsDisplay];
-	//[labelView setNeedsDisplay];
+    UILabel *phoneNumber = (UILabel *)[self.contentView viewWithTag:2];
+    phoneNumber.text = _record.phoneNumber;
+    [phoneNumber setNeedsDisplay];
 }
 
 @end

@@ -28,9 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    ElementsSortedByNameDataSource* ds = [[ElementsSortedByNameDataSource alloc] init];
-    
-    _dataSource =
     self.tableView.dataSource =  _dataSource;
     
     // Uncomment the following line to preserve selection between presentations.

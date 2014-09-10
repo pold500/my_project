@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="HeH-Er-onR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="HeH-Er-onR">
     <dependencies>
         <deployment version="1280" defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -8,12 +8,16 @@
         <!--Tab Bar Controller-->
         <scene sceneID="TbZ-wb-GTs">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="HeH-Er-onR" sceneMemberID="viewController">
+                <tabBarController autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" modalTransitionStyle="partialCurl" hidesBottomBarWhenPushed="YES" id="HeH-Er-onR" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Nhg-1f-2Wk">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <tabBar key="tabBar" autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" id="Nhg-1f-2Wk">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     </tabBar>
                     <connections>
                         <segue destination="7IM-lD-kz1" kind="relationship" relationship="viewControllers" id="1Se-DX-zUk"/>
@@ -27,23 +31,31 @@
         <scene sceneID="MWr-EM-L3M">
             <objects>
                 <tableViewController id="kbG-MW-TW9" customClass="RecordsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="INn-vH-xZY">
+                    <tableView key="view" opaque="NO" contentMode="scaleAspectFit" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="INn-vH-xZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wb4-II-inF">
-                            <rect key="frame" x="0.0" y="130" width="320" height="22"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </label>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookRecordCell" id="b2h-vv-1sg" customClass="BookRecordTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookRecordCell" rowHeight="55" id="b2h-vv-1sg" customClass="BookRecordTableViewCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b2h-vv-1sg" id="lM5-4k-CnZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nm5-Ag-vZe">
+                                            <rect key="frame" x="10" y="2" width="271" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wb4-II-inF">
+                                            <rect key="frame" x="10" y="36" width="320" height="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="Hz2-uw-CHk" kind="push" identifier="showDetail" id="N1m-8t-5wF"/>
@@ -52,6 +64,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" id="pHp-EU-4zN"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XkA-C4-NTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,11 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1295" y="-1120"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Contact Data Controller - Go back-->
         <scene sceneID="7Ci-NV-4ZZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VvD-ql-g4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="sM4-B2-sE7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditContactDataID" id="sM4-B2-sE7" customClass="EditContactDataController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nrB-mU-sUS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -182,12 +194,23 @@
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonAction:" destination="sM4-B2-sE7" eventType="touchDown" id="qCE-aY-m1t"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9VD-jr-647"/>
+                    <navigationItem key="navigationItem" title="Go back" id="9VD-jr-647">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hmn-DV-rIW"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameLabelOutlet" destination="NxE-gX-TNq" id="9ff-2T-K8b"/>
+                        <outlet property="phoneNumberLabelOutlet" destination="4gK-xC-rk3" id="40J-fk-Ngw"/>
+                        <outlet property="secondNameLabelOutlet" destination="VVg-D6-YuN" id="6eS-rS-OBO"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvD-ql-g4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1405" y="-524"/>
         </scene>
@@ -196,6 +219,7 @@
             <objects>
                 <navigationController storyboardIdentifier="navForTableView" definesPresentationContext="YES" id="7IM-lD-kz1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="sam-r4-rPL"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nod-7K-Wce">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

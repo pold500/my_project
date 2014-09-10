@@ -85,34 +85,12 @@
     
     RecordsTableViewController *viewController =
         (RecordsTableViewController *)[navController topViewController];
-    
-    //dataSource = [[ElementsSortedByNameDataSource alloc] init];
+
     dataSource = [[RecordsSortedByNameDataSource alloc] init];
     
     viewController.dataSource = dataSource;
     
     [viewControllers addObject:navController];
-    
-//    // by atomic number
-//    navController = [storyboard instantiateViewControllerWithIdentifier:@"navForTableView"];
-//    viewController = (ElementsTableViewController *)[navController topViewController];
-//    dataSource = [[ElementsSortedByAtomicNumberDataSource alloc] init];
-//    viewController.dataSource = dataSource;
-//    [viewControllers addObject:navController];
-    
-//    // by symbol
-//    navController = [storyboard instantiateViewControllerWithIdentifier:@"navForTableView"];
-//    viewController = (ElementsTableViewController *)[navController topViewController];
-//    dataSource = [[ElementsSortedBySymbolDataSource alloc] init];
-//    viewController.dataSource = dataSource;
-//    [viewControllers addObject:navController];
-    
-//    // by state
-//    navController = [storyboard instantiateViewControllerWithIdentifier:@"navForTableView"];
-//    viewController = (ElementsTableViewController *)[navController topViewController];
-//    dataSource = [[ElementsSortedByStateDataSource alloc] init];
-//    viewController.dataSource = dataSource;
-//    [viewControllers addObject:navController];
     
     tabBarController.viewControllers = viewControllers;
     

@@ -11,27 +11,20 @@
 #import "BookRecordCollection.h"
 #import "BookRecordTableViewCell.h"
 
+@interface RecordsSortedByNameDataSource()
+@end
+
 
 @implementation RecordsSortedByNameDataSource
 
-UIViewController
-// protocol methods for "ElementsDataSourceProtocol"
-
-// return the data used by the navigation controller and tab bar item
-
 - (NSString *)name {
     
-	return @"Name";
+	return @"";
 }
 
 - (NSString *)navigationBarName {
     
-	return @"Sorted by Name";
-}
-
-- (UIImage *)tabBarImage {
-    
-	return [UIImage imageNamed:@"name_gray.png"];
+	return @"Address Book";
 }
 
 - (UITableViewStyle)tableViewStyle {
@@ -39,16 +32,14 @@ UIViewController
 	return UITableViewStylePlain;
 }
 
-// return the atomic element at the index
 - (BookRecord *)bookRecordForIndexPath:(NSIndexPath *)indexPath {
-
-    //if(indexPath.row >= 0 && indexPath.row <= 5)
-    {
-        BookRecord* bookRecord = [[[BookRecordCollection getBookRecordCollection] recordsArray ]
-                                  objectAtIndex:indexPath.row];
-        return bookRecord;
-    }
-    return nil;
+   NSString* keyByIndex = [[[BookRecordCollection getBookRecordCollection]
+                          recordsNameIndexArray ] objectAtIndex:(indexPath.section)];
+   id obj = (NSArray*)[[[BookRecordCollection getBookRecordCollection]
+                          recordsDictionary ] objectForKey:( keyByIndex )];
+   BookRecord* bookRecord = [(NSArray*)[[[BookRecordCollection getBookRecordCollection]
+                             recordsDictionary ] objectForKey:( keyByIndex )] objectAtIndex:(indexPath.row)];
+   return bookRecord;
 }
 
 #pragma mark - UITableViewDataSource
@@ -57,18 +48,15 @@ UIViewController
 {
 	BookRecordTableViewCell *cell =
     (BookRecordTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"BookRecordCell"];
-    
-	// set the element for this cell as specified by the datasource. The atomicElementForIndexPath: is declared
-	// as part of the ElementsDataSource Protocol and will return the appropriate element for the index row
-    //
+
 	cell.record = [self bookRecordForIndexPath:indexPath];
-	
+	   
 	return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1;
+    return [[[BookRecordCollection getBookRecordCollection] recordsNameIndexArray] count ];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -84,9 +72,10 @@ UIViewController
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-	return [[[BookRecordCollection getBookRecordCollection] recordsArray ] count ];
-                                          //recordsWithInitialLetter:initialLetter];
+    id aKey = [[[BookRecordCollection getBookRecordCollection] recordsNameIndexArray ] objectAtIndex:section];
+    id aDictValue = [[[BookRecordCollection getBookRecordCollection] recordsDictionary ] objectForKey:aKey];
+    return [aDictValue count];
+
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
