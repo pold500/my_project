@@ -8,8 +8,11 @@
 
 #import "RecordsTableViewController.h"
 #import "BookRecordDetailedViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "FBLoginHandler.h"
+@interface RecordsTableViewController () <FBLoginViewDelegate>
 
-@interface RecordsTableViewController ()
+@property (strong) FBLoginHandler* loginViewDelegate;
 
 @end
 
@@ -49,10 +52,44 @@
     // set the long name shown in the navigation bar
     self.navigationItem.title = [_dataSource navigationBarName];
 }
+//
+//-(void)postContactDataToUsersWall:(BookRecord*)contact
+//{
+//    NSString *textToShare = @"I just shared this from my App";
+//    UIImage *imageToShare = [UIImage imageNamed:@"Image.png"];
+//    NSURL *urlToShare = [NSURL URLWithString:@"http://www.bronron.com"];
+//    NSArray *activityItems = @[textToShare, imageToShare, urlToShare];
+//    
+//    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+//    [self presentViewController:activityVC animated:TRUE completion:nil];
+//}
+
+
+
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    FBLoginView *loginView = [[FBLoginView alloc] init];//WithPublishPermissions:(@[@"basic_info",@"publish_actions"]) defaultAudience:FBSessionDefaultAudienceOnlyMe];
+    
+    [self.view addSubview:loginView];
+    
+    
+    
+    // Align the button in the center horizontally
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x -
+                                                     (loginView.frame.size.width / 2)), 5);
+    self.loginViewDelegate = [[FBLoginHandler alloc]init];
+    
+    //[loginViewDelegate retain];
+    
+    loginView.delegate = self.loginViewDelegate;
+    
+    [self.view addSubview:loginView];
+    
+
+    //[[self view] addSubview:button];
     
     self.tableView.sectionIndexMinimumDisplayRowCount = 0;
     
@@ -96,7 +133,49 @@
 }
 
 
+#pragma mark - FBLoginViewDelegate
 
+// UIAlertView helper for post buttons
+- (void)showAlert:(NSString *)message
+           result:(id)result
+            error:(NSError *)error {
+    
+    NSString *alertMsg;
+    NSString *alertTitle;
+    if (error) {
+        alertTitle = @"Error";
+        // Since we use FBRequestConnectionErrorBehaviorAlertUser,
+        // we do not need to surface our own alert view if there is an
+        // an fberrorUserMessage unless the session is closed.
+        if (error.fberrorUserMessage && FBSession.activeSession.isOpen) {
+            alertTitle = nil;
+            
+        } else {
+            // Otherwise, use a general "connection problem" message.
+            alertMsg = @"Operation failed due to a connection problem, retry later.";
+        }
+    } else {
+        NSDictionary *resultDict = (NSDictionary *)result;
+        alertMsg = [NSString stringWithFormat:@"Successfully posted '%@'.", message];
+        NSString *postId = [resultDict valueForKey:@"id"];
+        if (!postId) {
+            postId = [resultDict valueForKey:@"postId"];
+        }
+        if (postId) {
+            alertMsg = [NSString stringWithFormat:@"%@\nPost ID: %@", alertMsg, postId];
+        }
+        alertTitle = @"Success";
+    }
+    
+    if (alertTitle) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+                                                            message:alertMsg
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
 
 @end
 

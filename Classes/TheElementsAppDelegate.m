@@ -56,6 +56,7 @@
 #import "RecordsSortedByNameDataSource.h"
 #import "BookRecordDataProtocol.h"
 #import "RecordsTableViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation TheElementsAppDelegate
 
@@ -67,8 +68,11 @@
     // a UINaviationController for each screen, with the ElementsTableViewController as the
     // root view controller.
     //
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    // Override point for customization after application launch.
+    [FBLoginView class];
     
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+
     // the class type for the datasource is not crucial, but that it implements the
 	// ElementsDataSource protocol and the UITableViewDataSource Protocol
     //
@@ -95,6 +99,19 @@
     tabBarController.viewControllers = viewControllers;
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // You can add your app-specific url handling code here if needed
+    
+    return wasHandled;
 }
 
 @end

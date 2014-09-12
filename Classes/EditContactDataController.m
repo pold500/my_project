@@ -9,6 +9,8 @@
 #import "EditContactDataController.h"
 #import "SingleRecordSingleton.h"
 #import "BookRecord.h"
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @interface EditContactDataController ()
 @property (nonatomic, strong) BookRecord* data;
@@ -25,6 +27,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,6 +37,9 @@
     [_nameLabelOutlet           setText:_data.name        ];
     [_secondNameLabelOutlet     setText:_data.second_name ];
     [_phoneNumberLabelOutlet    setText:_data.phoneNumber ];
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning

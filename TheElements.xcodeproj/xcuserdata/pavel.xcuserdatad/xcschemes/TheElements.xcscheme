@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "TheElements.app"
                BlueprintName = "TheElements"
-               ReferencedContainer = "container:TheElements.xcodeproj">
+               ReferencedContainer = "container:theElements.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "TheElements.app"
             BlueprintName = "TheElements"
-            ReferencedContainer = "container:TheElements.xcodeproj">
+            ReferencedContainer = "container:theElements.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,10 +54,30 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "TheElements.app"
             BlueprintName = "TheElements"
-            ReferencedContainer = "container:TheElements.xcodeproj">
+            ReferencedContainer = "container:theElements.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "DYLD_INSERT_LIBRARIES"
+            value = "/usr/lib/libgmalloc.dylib"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "OBJC_PRINT_EXCEPTIONS"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -72,7 +92,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "TheElements.app"
             BlueprintName = "TheElements"
-            ReferencedContainer = "container:TheElements.xcodeproj">
+            ReferencedContainer = "container:theElements.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

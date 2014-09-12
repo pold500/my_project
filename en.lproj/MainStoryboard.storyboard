@@ -8,12 +8,11 @@
         <!--Tab Bar Controller-->
         <scene sceneID="TbZ-wb-GTs">
             <objects>
-                <tabBarController autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" modalTransitionStyle="partialCurl" hidesBottomBarWhenPushed="YES" id="HeH-Er-onR" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                <tabBarController definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="HeH-Er-onR" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" id="Nhg-1f-2Wk">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -26,6 +25,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wM4-3F-65G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-109" y="-1125"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="p3f-DR-sG6">
+            <objects>
+                <viewController id="w7J-06-x2z" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Np4-5e-ESY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="viT-8G-Ska" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119" y="-546"/>
         </scene>
         <!--Records Table View Controller-->
         <scene sceneID="MWr-EM-L3M">
