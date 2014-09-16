@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BookRecord;
 
 @interface BookRecordCollection : NSObject
 
-@property (nonatomic, strong) NSMutableArray      *recordsArray;
 
-@property (nonatomic, strong) NSArray *recordsNameIndexArray;
-@property (nonatomic, strong) NSArray *recordsSortedByName;
+@property (nonatomic, strong) NSArray             *recordsNameIndexArray;
+@property (nonatomic, strong) NSDictionary        *recordsDictionary;
+@property (nonatomic, strong) NSMutableArray      *recordsArrayById;
+@property (nonatomic, strong) NSMutableDictionary *idToIndexPath;
 
-@property (nonatomic, strong) NSDictionary* recordsDictionary;
+- (void)setBookRecordForIndexPath:(NSIndexPath*)indexPath
+                          record: (BookRecord*) bookRecord_;
 
-+ (BookRecordCollection*)getBookRecordCollection;
++ (BookRecordCollection*)getInstance;
 @end

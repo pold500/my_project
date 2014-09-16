@@ -10,9 +10,11 @@
 
 @interface BookRecord : NSObject
 
-@property NSString* name;
-@property NSString* second_name;
-@property NSString* phoneNumber;
-
+@property NSUInteger            record_id;
+@property NSString*             name;
+@property NSString*             second_name;
+@property NSString*             phone_number;
+@property NSMutableDictionary*  data;
+@property NSIndexPath*          index_path;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 @end

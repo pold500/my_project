@@ -17,17 +17,15 @@
 //
 @interface BookRecordDetailedViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabelOutlet;
-@property (weak, nonatomic) IBOutlet UILabel *secondNameLabelOutlet;
-@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabelOutlet;
-@property (weak, nonatomic) IBOutlet UIButton *editButtonOutlet;
+@property (weak, nonatomic  ) IBOutlet UILabel  * nameLabelOutlet;
+@property (weak, nonatomic  ) IBOutlet UILabel  * secondNameLabelOutlet;
+@property (weak, nonatomic  ) IBOutlet UILabel  * phoneNumberLabelOutlet;
+@property (weak, nonatomic  ) IBOutlet UIButton * editButtonOutlet;
+@property (nonatomic, strong) BookRecord        * record;
+@property (nonatomic, strong) NSIndexPath       * path;
 
-@property (nonatomic, strong) BookRecord        *record;
-
+- (IBAction)touchDownFBButton    :(id)sender;
 - (IBAction)editButtonTouchedDown:(id)sender;
 
-
-- (void)setRecord:(BookRecord *)record;
-- (void)goToEditContact;
 
 @end

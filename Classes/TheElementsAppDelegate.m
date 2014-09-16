@@ -53,7 +53,7 @@
 #import "ElementsSortedByAtomicNumberDataSource.h"
 #import "ElementsSortedBySymbolDataSource.h"
 #import "ElementsSortedByStateDataSource.h"
-#import "RecordsSortedByNameDataSource.h"
+#import "TableDataSource.h"
 #import "BookRecordDataProtocol.h"
 #import "RecordsTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
@@ -71,32 +71,41 @@
     // Override point for customization after application launch.
     [FBLoginView class];
     
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    // *tabBarController = (UITabBarController *)self.window.rootViewController;
 
     // the class type for the datasource is not crucial, but that it implements the
 	// ElementsDataSource protocol and the UITableViewDataSource Protocol
     //
-    id<BookRecordDataProtocol, UITableViewDataSource> dataSource;
+    //id<BookRecordDataProtocol, UITableViewDataSource> dataSource;
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:1];
+    
+    //NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:1];
     
     // create our tabbar view controllers, since we already have one defined in our storyboard
     // we will create 3 more instances of it, and assign each it's own kind data source
     
     // by name
+    //UINavigationController *navController = (UINavigationController*)self.window.rootViewController;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+
     UINavigationController *navController = [storyboard instantiateViewControllerWithIdentifier:@"navForTableView"];
     
-    RecordsTableViewController *viewController =
-        (RecordsTableViewController *)[navController topViewController];
+    self.window.rootViewController = navController;
+    
+    UIViewController* loginPage = [storyboard instantiateViewControllerWithIdentifier:@"fbLoginPage"];
+    
+    //RecordsTableViewController *tableViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordsTableView"];
+    
+    [navController pushViewController:loginPage animated:YES];
+    //    (RecordsTableViewController *)[navController topViewController];
 
-    dataSource = [[RecordsSortedByNameDataSource alloc] init];
+    //dataSource = [[RecordsSortedByNameDataSource alloc] init];
     
-    viewController.dataSource = dataSource;
+//    tableViewController.dataSource = dataSource;
     
-    [viewControllers addObject:navController];
+    //[viewControllers addObject:navController];
     
-    tabBarController.viewControllers = viewControllers;
+    //tabBarController.viewControllers = viewControllers;
     
     return YES;
 }

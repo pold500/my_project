@@ -24,7 +24,7 @@
     [namelabelView setNeedsDisplay];
     
     UILabel *phoneNumber = (UILabel *)[self.contentView viewWithTag:2];
-    phoneNumber.text = _record.phoneNumber;
+    phoneNumber.text = _record.phone_number;
     [phoneNumber setNeedsDisplay];
 }
 

@@ -14,17 +14,19 @@
 		2883B6A10D944613003F08B5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2883B6A00D944613003F08B5 /* QuartzCore.framework */; };
 		535A1E6016CEA30F00B7A289 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535A1E5E16CEA30F00B7A289 /* MainStoryboard.storyboard */; };
 		53A3E91216CDB118001BE75B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A3E91116CDB118001BE75B /* UIKit.framework */; };
-		8B3E11CA19BF558800934F3F /* EditViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E11C919BF558800934F3F /* EditViewControllerTableViewController.m */; };
 		8B3E11CD19BF5ACD00934F3F /* EditContactDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E11CC19BF5ACD00934F3F /* EditContactDataController.m */; };
 		8BC82D0A19BA2C13001BF88C /* BookRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D0919BA2C13001BF88C /* BookRecord.m */; };
 		8BC82D0D19BA2EAB001BF88C /* BookRecordCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D0C19BA2EAB001BF88C /* BookRecordCollection.m */; };
 		8BC82D0F19BDA355001BF88C /* BookRecords.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BC82D0E19BDA355001BF88C /* BookRecords.plist */; };
-		8BC82D1319BDAD79001BF88C /* RecordsSortedByNameDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D1219BDAD79001BF88C /* RecordsSortedByNameDataSource.m */; };
+		8BC82D1319BDAD79001BF88C /* TableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D1219BDAD79001BF88C /* TableDataSource.m */; };
 		8BC82D1619BDB1F6001BF88C /* BookRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D1519BDB1F6001BF88C /* BookRecordTableViewCell.m */; };
 		8BC82D1919BDB46A001BF88C /* RecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D1819BDB46A001BF88C /* RecordsTableViewController.m */; };
 		8BC82D1C19BDB6A3001BF88C /* BookRecordDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC82D1B19BDB6A3001BF88C /* BookRecordDetailedViewController.m */; };
-		8BDF5EFC19BF6A2200C58C31 /* EditTableRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF5EFB19BF6A2200C58C31 /* EditTableRootController.m */; };
 		E96B274719C084E50035F67B /* SingleRecordSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B274619C084E50035F67B /* SingleRecordSingleton.m */; };
+		E9A1063C19C2E8C90003E0AB /* FbLoginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A1063B19C2E8C90003E0AB /* FbLoginPage.m */; };
+		E9A4333319C71BC100CC6105 /* TextFiledInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A4333219C71BC100CC6105 /* TextFiledInputDelegate.m */; };
+		E9A4333619C75E8800CC6105 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A4333519C75E8800CC6105 /* MainNavigationController.m */; };
+		E9A4333819C760E000CC6105 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A4333719C760E000CC6105 /* Default-568h@2x.png */; };
 		E9CC4FF719C1A9CC000F0B91 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CC4FF619C1A9CC000F0B91 /* FacebookSDK.framework */; };
 		E9CC4FFA19C1EB9C000F0B91 /* FBLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CC4FF919C1EB9C000F0B91 /* FBLoginHandler.m */; };
 /* End PBXBuildFile section */
@@ -40,8 +42,6 @@
 		32CA4F630368D1EE00C91783 /* TheElements_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheElements_Prefix.pch; sourceTree = "<group>"; };
 		535A1E5F16CEA30F00B7A289 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		53A3E91116CDB118001BE75B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		8B3E11C819BF558800934F3F /* EditViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewControllerTableViewController.h; sourceTree = "<group>"; };
-		8B3E11C919BF558800934F3F /* EditViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewControllerTableViewController.m; sourceTree = "<group>"; };
 		8B3E11CB19BF5ACD00934F3F /* EditContactDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContactDataController.h; sourceTree = "<group>"; };
 		8B3E11CC19BF5ACD00934F3F /* EditContactDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactDataController.m; sourceTree = "<group>"; };
 		8BC82D0819BA2C13001BF88C /* BookRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookRecord.h; sourceTree = "<group>"; };
@@ -50,19 +50,24 @@
 		8BC82D0C19BA2EAB001BF88C /* BookRecordCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookRecordCollection.m; sourceTree = "<group>"; };
 		8BC82D0E19BDA355001BF88C /* BookRecords.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BookRecords.plist; sourceTree = "<group>"; };
 		8BC82D1019BDAC0F001BF88C /* BookRecordDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookRecordDataProtocol.h; sourceTree = "<group>"; };
-		8BC82D1119BDAD79001BF88C /* RecordsSortedByNameDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsSortedByNameDataSource.h; sourceTree = "<group>"; };
-		8BC82D1219BDAD79001BF88C /* RecordsSortedByNameDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsSortedByNameDataSource.m; sourceTree = "<group>"; };
+		8BC82D1119BDAD79001BF88C /* TableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableDataSource.h; sourceTree = "<group>"; };
+		8BC82D1219BDAD79001BF88C /* TableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableDataSource.m; sourceTree = "<group>"; };
 		8BC82D1419BDB1F6001BF88C /* BookRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookRecordTableViewCell.h; sourceTree = "<group>"; };
 		8BC82D1519BDB1F6001BF88C /* BookRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookRecordTableViewCell.m; sourceTree = "<group>"; };
 		8BC82D1719BDB46A001BF88C /* RecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsTableViewController.h; sourceTree = "<group>"; };
 		8BC82D1819BDB46A001BF88C /* RecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewController.m; sourceTree = "<group>"; };
 		8BC82D1A19BDB6A3001BF88C /* BookRecordDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookRecordDetailedViewController.h; sourceTree = "<group>"; };
 		8BC82D1B19BDB6A3001BF88C /* BookRecordDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookRecordDetailedViewController.m; sourceTree = "<group>"; };
-		8BDF5EFA19BF6A2200C58C31 /* EditTableRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableRootController.h; sourceTree = "<group>"; };
-		8BDF5EFB19BF6A2200C58C31 /* EditTableRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableRootController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E96B274519C084E50035F67B /* SingleRecordSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleRecordSingleton.h; sourceTree = "<group>"; };
 		E96B274619C084E50035F67B /* SingleRecordSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleRecordSingleton.m; sourceTree = "<group>"; };
+		E9A1063A19C2E8C90003E0AB /* FbLoginPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbLoginPage.h; sourceTree = "<group>"; };
+		E9A1063B19C2E8C90003E0AB /* FbLoginPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbLoginPage.m; sourceTree = "<group>"; };
+		E9A4333119C71BC100CC6105 /* TextFiledInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledInputDelegate.h; sourceTree = "<group>"; };
+		E9A4333219C71BC100CC6105 /* TextFiledInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFiledInputDelegate.m; sourceTree = "<group>"; };
+		E9A4333419C75E8800CC6105 /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
+		E9A4333519C75E8800CC6105 /* MainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
+		E9A4333719C760E000CC6105 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E9CC4FF619C1A9CC000F0B91 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		E9CC4FF819C1EB9C000F0B91 /* FBLoginHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginHandler.h; sourceTree = "<group>"; };
 		E9CC4FF919C1EB9C000F0B91 /* FBLoginHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginHandler.m; sourceTree = "<group>"; };
@@ -90,8 +95,8 @@
 				C83CD92C0D5822C30066AE4B /* Application Support */,
 				C8285CEE0D5A4CB10036A28A /* TableView Representations */,
 				C83CD92A0D5822910066AE4B /* Data Model */,
-				8BDF5EFA19BF6A2200C58C31 /* EditTableRootController.h */,
-				8BDF5EFB19BF6A2200C58C31 /* EditTableRootController.m */,
+				E9A4333119C71BC100CC6105 /* TextFiledInputDelegate.h */,
+				E9A4333219C71BC100CC6105 /* TextFiledInputDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -119,6 +124,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				E9A4333719C760E000CC6105 /* Default-568h@2x.png */,
+				E9A4333419C75E8800CC6105 /* MainNavigationController.h */,
+				E9A4333519C75E8800CC6105 /* MainNavigationController.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -159,8 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				8BC82D1019BDAC0F001BF88C /* BookRecordDataProtocol.h */,
-				8BC82D1119BDAD79001BF88C /* RecordsSortedByNameDataSource.h */,
-				8BC82D1219BDAD79001BF88C /* RecordsSortedByNameDataSource.m */,
+				8BC82D1119BDAD79001BF88C /* TableDataSource.h */,
+				8BC82D1219BDAD79001BF88C /* TableDataSource.m */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -204,12 +212,12 @@
 				8BC82D1B19BDB6A3001BF88C /* BookRecordDetailedViewController.m */,
 				8BC82D1719BDB46A001BF88C /* RecordsTableViewController.h */,
 				8BC82D1819BDB46A001BF88C /* RecordsTableViewController.m */,
-				8B3E11C819BF558800934F3F /* EditViewControllerTableViewController.h */,
-				8B3E11C919BF558800934F3F /* EditViewControllerTableViewController.m */,
 				8B3E11CB19BF5ACD00934F3F /* EditContactDataController.h */,
 				8B3E11CC19BF5ACD00934F3F /* EditContactDataController.m */,
 				E9CC4FF819C1EB9C000F0B91 /* FBLoginHandler.h */,
 				E9CC4FF919C1EB9C000F0B91 /* FBLoginHandler.m */,
+				E9A1063A19C2E8C90003E0AB /* FbLoginPage.h */,
+				E9A1063B19C2E8C90003E0AB /* FbLoginPage.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -274,6 +282,7 @@
 			files = (
 				8BC82D0F19BDA355001BF88C /* BookRecords.plist in Resources */,
 				535A1E6016CEA30F00B7A289 /* MainStoryboard.storyboard in Resources */,
+				E9A4333819C760E000CC6105 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,14 +297,15 @@
 				8BC82D1619BDB1F6001BF88C /* BookRecordTableViewCell.m in Sources */,
 				8BC82D0A19BA2C13001BF88C /* BookRecord.m in Sources */,
 				E96B274719C084E50035F67B /* SingleRecordSingleton.m in Sources */,
+				E9A4333619C75E8800CC6105 /* MainNavigationController.m in Sources */,
 				1D3623260D0F684500981E51 /* TheElementsAppDelegate.m in Sources */,
 				8B3E11CD19BF5ACD00934F3F /* EditContactDataController.m in Sources */,
-				8BC82D1319BDAD79001BF88C /* RecordsSortedByNameDataSource.m in Sources */,
-				8BDF5EFC19BF6A2200C58C31 /* EditTableRootController.m in Sources */,
+				8BC82D1319BDAD79001BF88C /* TableDataSource.m in Sources */,
 				8BC82D0D19BA2EAB001BF88C /* BookRecordCollection.m in Sources */,
-				8B3E11CA19BF558800934F3F /* EditViewControllerTableViewController.m in Sources */,
+				E9A4333319C71BC100CC6105 /* TextFiledInputDelegate.m in Sources */,
 				8BC82D1C19BDB6A3001BF88C /* BookRecordDetailedViewController.m in Sources */,
 				8BC82D1919BDB46A001BF88C /* RecordsTableViewController.m in Sources */,
+				E9A1063C19C2E8C90003E0AB /* FbLoginPage.m in Sources */,
 				E9CC4FFA19C1EB9C000F0B91 /* FBLoginHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

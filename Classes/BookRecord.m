@@ -8,38 +8,43 @@
 
 #import "BookRecord.h"
 
+@interface BookRecord()
++ (int)count;
+@end
+
+static int theCount = 0;
+
+
+
+
+
 @implementation BookRecord
+
+- (BOOL)isEqual:(id)object {
+    return self.record_id == ((BookRecord*)object).record_id;
+}
+
+- (NSUInteger)hash {
+    return self.record_id; // if the only field to determine uniqueness is `identifier`, this hashing method is enough
+}
+
+
++ (int) count { return theCount; }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
 
     if (self) {
-		self.name        = [dictionary valueForKey:@"Name"         ];
-		self.second_name = [dictionary valueForKey:@"Second Name"  ];
-        self.phoneNumber = [dictionary valueForKey:@"Phone Number" ];
+        self.record_id     = [BookRecord count];
+        theCount++;
+		self.name          = [dictionary valueForKey:@"Name"         ];
+		self.second_name   = [dictionary valueForKey:@"Second Name"  ];
+        self.phone_number  = [dictionary valueForKey:@"Phone Number" ];
+        self.data          = dictionary.copy;
 	}
 	return self;
 }
 
 
 @end
-
-
-//#import <Foundation/Foundation.h>
-//
-//@interface AtomicElement : NSObject
-//
-//@property (nonatomic, strong) NSNumber *atomicNumber;
-//@property (nonatomic, strong) NSString *name;
-//@property (nonatomic, strong) NSString *symbol;
-//@property (nonatomic, strong) NSString *state;
-//@property (weak, readonly) UIImage *flipperImageForAtomicElementNavigationItem;
-//@property (weak, readonly) UIImage *stateImageForAtomicElementTileView;
-//@property (weak, readonly) UIImage *stateImageForAtomicElementView;
-//@property (nonatomic, strong) NSString *atomicWeight;
-//@property (nonatomic, strong) NSNumber *group;
-//@property (nonatomic, strong) NSNumber *period;
-//@property (nonatomic, strong) NSString *discoveryYear;
-//
-//- (id)initWithDictionary:(NSDictionary *)aDictionary;
 

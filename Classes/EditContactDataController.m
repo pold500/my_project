@@ -9,11 +9,13 @@
 #import "EditContactDataController.h"
 #import "SingleRecordSingleton.h"
 #import "BookRecord.h"
+#import "BookRecordCollection.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "TextFiledInputDelegate.h"
 
 
 @interface EditContactDataController ()
-@property (nonatomic, strong) BookRecord* data;
+
 @end
 
 @implementation EditContactDataController
@@ -22,24 +24,41 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        
+
     }
     return self;
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+
+    
+    [_nameLabelOutlet           setText:_record.name         ];
+    [_secondNameLabelOutlet     setText:_record.second_name  ];
+    [_phoneNumberLabelOutlet    setText:_record.phone_number ];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //Do nothing.
+    //We save only on 'Done' button click
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    _data =                     [[SingleRecordSingleton getData] data ];
-    [_nameLabelOutlet           setText:_data.name        ];
-    [_secondNameLabelOutlet     setText:_data.second_name ];
-    [_phoneNumberLabelOutlet    setText:_data.phoneNumber ];
-    
+    self.nameLabelOutlet        .delegate = [TextFiledInputDelegate getInstance];
+    self.secondNameLabelOutlet  .delegate = [TextFiledInputDelegate getInstance];
+    self.phoneNumberLabelOutlet .delegate = self;
 
-    
+    [_nameLabelOutlet           setText:_record.name        ];
+    [_secondNameLabelOutlet     setText:_record.second_name ];
+    [_phoneNumberLabelOutlet    setText:_record.phone_number ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,29 +67,88 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+/**
+ *
+ * Method used to validate data in a phoneNumber UITextEdit element on the 
+ * edit contact form
+ *
+ *
+ * @param  dataToValidate NSString passed from UI control element, in our case
+ *         it's a phone number
+ * @return YES if validation was passed and data is sane, NO otherwise.
+ */
+- (BOOL)validatePhoneNumber:(NSString*)dataToValidate
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSError *error = nil;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^0-9.]"
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:&error];
+    NSUInteger numberOfMatches = [regex  numberOfMatchesInString:dataToValidate
+                                                           options:0
+                                                             range:NSMakeRange(0, [dataToValidate length])];
+    return (numberOfMatches>0)?NO:YES;
 }
-*/
 
 - (IBAction)doneButtonAction:(id)sender {
-    _data.name = _nameLabelOutlet.text;
-    _data.second_name = _secondNameLabelOutlet.text;
-    _data.phoneNumber = _phoneNumberLabelOutlet.text;
-    SingleRecordSingleton.getData.data = _data;
-    [[self navigationController ] popToRootViewControllerAnimated:YES];
+    //Validation comes first
+    if([self validatePhoneNumber:self.phoneNumberLabelOutlet.text])
+    {
+        //Validation of phone number went successful
+         //Save data to model
+        _record.name            = self.nameLabelOutlet       .text;
+        _record.second_name     = self.secondNameLabelOutlet .text;
+        _record.phone_number    = self.phoneNumberLabelOutlet.text;
+        
+        if([_record.name substringToIndex:1] != [self.nameLabelOutlet.text substringToIndex:1]) { //first letter of the name has changed
+            [[BookRecordCollection getInstance] setBookRecordForIndexPath:self.path record:_record]; }
+        
+        [[self navigationController] popViewControllerAnimated:YES];
+
+    }
+    else
+    {
+        //Validation failed
+        //Show error message to a user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Oops! You can use only digits in a phone number" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
 }
 
--(void)viewDidUnload
+#pragma mark UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
+    [self animateTextField: textField up: YES];
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: NO];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    const int   movementDistance = 100; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+
+    int movement = (up ? -movementDistance : movementDistance);
+
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
 }
 
 @end

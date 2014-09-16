@@ -6,16 +6,16 @@
 //
 //
 
-#import "RecordsSortedByNameDataSource.h"
+#import "TableDataSource.h"
 #import "BookRecord.h"
 #import "BookRecordCollection.h"
 #import "BookRecordTableViewCell.h"
 
-@interface RecordsSortedByNameDataSource()
+@interface TableDataSource()
 @end
 
 
-@implementation RecordsSortedByNameDataSource
+@implementation TableDataSource
 
 - (NSString *)name {
     
@@ -33,11 +33,9 @@
 }
 
 - (BookRecord *)bookRecordForIndexPath:(NSIndexPath *)indexPath {
-   NSString* keyByIndex = [[[BookRecordCollection getBookRecordCollection]
+   NSString* keyByIndex = [[[BookRecordCollection getInstance]
                           recordsNameIndexArray ] objectAtIndex:(indexPath.section)];
-   id obj = (NSArray*)[[[BookRecordCollection getBookRecordCollection]
-                          recordsDictionary ] objectForKey:( keyByIndex )];
-   BookRecord* bookRecord = [(NSArray*)[[[BookRecordCollection getBookRecordCollection]
+   BookRecord* bookRecord = [(NSArray*)[[[BookRecordCollection getInstance]
                              recordsDictionary ] objectForKey:( keyByIndex )] objectAtIndex:(indexPath.row)];
    return bookRecord;
 }
@@ -56,14 +54,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return [[[BookRecordCollection getBookRecordCollection] recordsNameIndexArray] count ];
+    return [[[BookRecordCollection getInstance] recordsNameIndexArray] count ];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     
 	// returns the array of section titles. There is one entry for each unique character that an element begins with
 	// [A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,R,S,T,U,V,X,Y,Z]
-	return [[BookRecordCollection getBookRecordCollection] recordsNameIndexArray];
+	return [[BookRecordCollection getInstance] recordsNameIndexArray];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -72,8 +70,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id aKey = [[[BookRecordCollection getBookRecordCollection] recordsNameIndexArray ] objectAtIndex:section];
-    id aDictValue = [[[BookRecordCollection getBookRecordCollection] recordsDictionary ] objectForKey:aKey];
+    id aKey = [[[BookRecordCollection getInstance] recordsNameIndexArray ] objectAtIndex:section];
+    id aDictValue = [[[BookRecordCollection getInstance] recordsDictionary ] objectForKey:aKey];
     return [aDictValue count];
 
 }
@@ -83,10 +81,21 @@
 	// this table has multiple sections. One for each unique character that an element begins with
 	// [A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,R,S,T,U,V,X,Y,Z]
 	// return the letter that represents the requested section
-	// this is actually a delegate method, but we forward the request to the datasource in the view controller
-	//
-	return [[[BookRecordCollection getBookRecordCollection] recordsNameIndexArray]
+	return [[[BookRecordCollection getInstance] recordsNameIndexArray]
             objectAtIndex:section];
 }
+
+-(void)setRecordAtIndex:(NSIndexPath*)indexPath
+                record :(BookRecord*)bookRecord
+{
+    NSString* keyByIndex = [[[BookRecordCollection getInstance]
+                             recordsNameIndexArray ] objectAtIndex:(indexPath.section)];
+    [(NSMutableOrderedSet*)[[[BookRecordCollection getInstance]
+                              recordsDictionary    ] objectForKey        :(keyByIndex)]
+                                                     replaceObjectAtIndex:indexPath.row
+                                                     withObject          :bookRecord];
+    
+}
+
 
 @end
