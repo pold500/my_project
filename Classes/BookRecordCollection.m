@@ -8,15 +8,53 @@
 
 #import "BookRecordCollection.h"
 #import "BookRecord.h"
+#import "SortedOrderedSet.h"
 
 @interface BookRecordCollection()
 
 @property (nonatomic, strong) NSMutableArray      *recordsArray;
 @property (nonatomic, strong) NSArray             *recordsSortedByName;
-
 @end
 
+
+static NSUInteger recordCount = 0;
+
+
 @implementation BookRecordCollection
+
++ (NSUInteger) getNewRecordID
+{
+    return recordCount++;
+}
+
+- (NSArray*)recordsNameIndexArray
+{
+    return [[[self recordsDictionary ] allKeys ] sortedArrayUsingComparator:
+            ^NSComparisonResult(NSString* obj1, NSString* obj2)
+    {
+        return [obj1 localizedCaseInsensitiveCompare:obj2];
+    }];
+}
+
+-(void)insertNewRecord:(BookRecord *)record
+{
+    NSString* keyFromName = [[record.name substringToIndex:(1)] uppercaseString];
+
+    id object = [self.recordsDictionary objectForKey:keyFromName];
+
+    if (object!=nil) {
+
+        SortedOrderedSet* orderedSet = (SortedOrderedSet*)object;
+        [orderedSet addObject:record];
+
+    } else {
+
+        SortedOrderedSet* orderedSet = [[SortedOrderedSet alloc] initWithObject:record];
+        [self.recordsDictionary setValue:orderedSet forKey:keyFromName];
+
+    }
+
+}
 
 static BookRecordCollection *sharedInstance = nil;
 
@@ -52,44 +90,22 @@ static BookRecordCollection *sharedInstance = nil;
 	// Iterate over the values in the raw array, representing the contents of a file
 	for (eachElement in bookRecordsFromFileDictionary)
 	{
-        BookRecord *aRecord = [[BookRecord alloc] init];
+        BookRecord* record = [[BookRecord alloc] initWithDictionary:eachElement];
 
-        aRecord = [[BookRecord alloc] initWithDictionary:eachElement];
-
-        [self.recordsArray      addObject: aRecord]; //unsorted, without any order
+        [self.recordsArray      addObject: record]; //unsorted, without any order
         
-        id object = [self.recordsDictionary objectForKey:[aRecord.name substringToIndex:1]];
+        SortedOrderedSet* object = [self.recordsDictionary objectForKey:[[record.name substringToIndex:1] uppercaseString ]];
 
         if (object!=nil) {
-
-            NSMutableOrderedSet* orderedSet = (NSMutableOrderedSet*)object;
-            [orderedSet addObject:aRecord];
-
+            SortedOrderedSet* orderedSet = (SortedOrderedSet*)object;
+            [orderedSet addObject:record];
         } else {
-
-            NSMutableOrderedSet* orderedSet = [[NSMutableOrderedSet alloc] initWithObject:aRecord];
-            [self.recordsDictionary setValue:orderedSet forKey:[aRecord.name substringToIndex:1]];
-
+            SortedOrderedSet* orderedSet = [[SortedOrderedSet alloc] initWithObject:record];
+            [self.recordsDictionary setValue:orderedSet forKey:[record.name substringToIndex:1]];
         }
-
-		[self.recordsArrayById addObject:(aRecord)];
-
     }
-
-    self.recordsNameIndexArray = [BookRecordCollection sortStringAlphabetically:self.recordsDictionary.allKeys];
-    
 }
 
-- (BookRecord *)getBookRecordForIndexPath:(NSIndexPath *)indexPath {
-    NSString* keyByIndex = [[[BookRecordCollection getInstance                       ]
-                                                   recordsNameIndexArray             ]
-                                                   objectAtIndex:(indexPath.section) ];
-    BookRecord* bookRecord = [(NSArray*)[[[BookRecordCollection getInstance  ]
-                                           recordsDictionary                 ]
-                                           objectForKey     :(keyByIndex   ) ]
-                                           objectAtIndex    :(indexPath.row) ];
-    return bookRecord;
-}
 
 -(void)setBookRecordForIndexPath:(NSIndexPath *) indexPath
                           record:(BookRecord  *) bookRecord {
@@ -109,7 +125,7 @@ static BookRecordCollection *sharedInstance = nil;
          [[[[BookRecordCollection getInstance] recordsDictionary] objectForKey:keyByIndex ]
              removeObjectAtIndex:(indexPath.row)];
         //4. Add the new object, constructed from the old, at a given key into a given bin
-        [(NSMutableOrderedSet*)[[[BookRecordCollection getInstance]
+        [(SortedOrderedSet*)[[[BookRecordCollection getInstance]
                                  recordsDictionary ] objectForKey:( keyFromFirstLetter )] addObject:bookRecord];
 
     }
@@ -123,7 +139,7 @@ static BookRecordCollection *sharedInstance = nil;
         [[[[BookRecordCollection getInstance] recordsDictionary] objectForKey:keyByIndex ]
             removeObjectAtIndex:(indexPath.row)];
         //3. Get the bin where the record is stored
-        NSMutableOrderedSet* orderedSet = [[NSMutableOrderedSet alloc] initWithObject:bookRecord];
+        SortedOrderedSet* orderedSet = [[SortedOrderedSet alloc] initWithObject:bookRecord];
         //4. Insert new element
         [[[BookRecordCollection getInstance        ]
                                 recordsDictionary  ]
@@ -150,8 +166,7 @@ static BookRecordCollection *sharedInstance = nil;
 - (id) init {
 	if (self = [super init]) {
         self.recordsDictionary   = [[NSMutableDictionary alloc] init];
-        self.recordsArrayById    = [[NSMutableArray      alloc] init];
-   		[self setupRecordsArray];
+        [self setupRecordsArray];
 	}
 	return self;
 }

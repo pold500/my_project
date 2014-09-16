@@ -44,10 +44,21 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="TDY-Q3-QDD" customClass="FBLoginView">
-                                <rect key="frame" x="45" y="293" width="231" height="45"/>
+                                <rect key="frame" x="45" y="302" width="231" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.39820518069999999" green="0.3952052868" blue="0.88161670920000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bIz-ac-M5q">
+                                <rect key="frame" x="45" y="234" width="231" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.39820518069999999" green="0.3952052868" blue="0.88161670920000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add contact">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addContactAction:" destination="w7J-06-x2z" eventType="touchDown" id="iZA-5a-3ne"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

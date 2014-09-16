@@ -8,7 +8,6 @@
 
 #import "BookRecordDetailedViewController.h"
 #import "BookRecordDetailedView.h"
-#import "SingleRecordSingleton.h"
 #import "BookRecordCollection.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "EditContactDataController.h"
@@ -31,6 +30,7 @@
     
     [((EditContactDataController*)wc) setRecord: self.record ];
     [((EditContactDataController*)wc) setPath  : self.path   ];
+    [((EditContactDataController*)wc) setViewState:EDIT      ];
     [self.navigationController pushViewController:wc animated:YES];
 }
 

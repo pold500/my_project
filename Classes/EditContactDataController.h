@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 @class BookRecord;
 
+typedef NS_ENUM(NSInteger, ViewState) {
+    EDIT,
+    ADD
+};
+
+
 @interface EditContactDataController : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameLabelOutlet;
 @property (weak, nonatomic) IBOutlet UITextField *secondNameLabelOutlet;
@@ -18,5 +24,6 @@
 
 @property (nonatomic, strong) BookRecord   * record;
 @property (nonatomic, strong) NSIndexPath  * path;
+@property                     ViewState      viewState;
 
 @end

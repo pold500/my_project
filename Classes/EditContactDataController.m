@@ -7,7 +7,6 @@
 //
 
 #import "EditContactDataController.h"
-#import "SingleRecordSingleton.h"
 #import "BookRecord.h"
 #import "BookRecordCollection.h"
 #import <FacebookSDK/FacebookSDK.h>
@@ -24,7 +23,6 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-
     }
     return self;
 }
@@ -34,8 +32,12 @@
 {
     [super viewWillAppear:animated];
 
+    if(self.viewState==ADD)
+    {
+        if(self.record==nil)
+            self.record = [[BookRecord alloc] init];
+    }
 
-    
     [_nameLabelOutlet           setText:_record.name         ];
     [_secondNameLabelOutlet     setText:_record.second_name  ];
     [_phoneNumberLabelOutlet    setText:_record.phone_number ];
@@ -92,6 +94,20 @@
     return (numberOfMatches>0)?NO:YES;
 }
 
+-(BOOL)validateInputFields:(NSString*)name
+                  secondName:(NSString*)secondName
+                 phoneNumber:(NSString*)phoneNumber
+{
+    BOOL retValue = NO;
+    if (![name isEqualToString:@""]&&
+        ![secondName isEqualToString:@""]&&
+        ![phoneNumber isEqualToString:@""]&&
+        [self validatePhoneNumber:phoneNumber]) {
+        retValue = YES;
+    }
+    return retValue;
+}
+
 - (IBAction)doneButtonAction:(id)sender {
     //Validation comes first
     if([self validatePhoneNumber:self.phoneNumberLabelOutlet.text])
@@ -101,18 +117,46 @@
         _record.name            = self.nameLabelOutlet       .text;
         _record.second_name     = self.secondNameLabelOutlet .text;
         _record.phone_number    = self.phoneNumberLabelOutlet.text;
+
+        if(self.viewState==EDIT)
+        {
+            if([_record.name substringToIndex:1] != [self.nameLabelOutlet.text substringToIndex:1])
+            {   //first letter of the name has changed
+                [[BookRecordCollection getInstance] setBookRecordForIndexPath:self.path record:_record];
+                [[self navigationController] popViewControllerAnimated:YES];
+            }
+        } else {
+            if([self validateInputFields:_record.name secondName:_record.second_name
+                             phoneNumber:_record.phone_number])
+            {
+                [[BookRecordCollection getInstance] insertNewRecord:_record];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Woohoo!" message:
+                            @"New record added!"
+                            delegate:nil cancelButtonTitle:@"Ok"
+                            otherButtonTitles:nil, nil];
+                [alert show];
+                [[self navigationController] popViewControllerAnimated:YES];
+            }
+            else {
+                //validation not passed
+                //Show error message
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                message:@"You've entered invalid data. Please check that all fields is filled with data and "
+                        @"phone number contains only digits"
+                delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }
         
-        if([_record.name substringToIndex:1] != [self.nameLabelOutlet.text substringToIndex:1]) { //first letter of the name has changed
-            [[BookRecordCollection getInstance] setBookRecordForIndexPath:self.path record:_record]; }
-        
-        [[self navigationController] popViewControllerAnimated:YES];
 
     }
     else
     {
         //Validation failed
         //Show error message to a user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Oops! You can use only digits in a phone number" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                             message:@"Oops! You can use only digits in a phone number"
+                             delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
         [alert show];
     }
     

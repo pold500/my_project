@@ -14,11 +14,14 @@
 
 @property (nonatomic, strong) NSArray             *recordsNameIndexArray;
 @property (nonatomic, strong) NSDictionary        *recordsDictionary;
-@property (nonatomic, strong) NSMutableArray      *recordsArrayById;
-@property (nonatomic, strong) NSMutableDictionary *idToIndexPath;
 
 - (void)setBookRecordForIndexPath:(NSIndexPath*)indexPath
-                          record: (BookRecord*) bookRecord_;
+                           record: (BookRecord*) bookRecord;
 
+- (void)insertNewRecord:   (BookRecord*) record;
+- (NSArray*)recordsNameIndexArray;
+
++ (NSUInteger)              getNewRecordID;
 + (BookRecordCollection*)getInstance;
+
 @end

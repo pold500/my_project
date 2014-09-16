@@ -12,6 +12,7 @@
 #import "RecordsTableViewController.h"
 #import "BookRecordCollection.h"
 #import "TableDataSource.h"
+#import "EditContactDataController.h"
 
 @interface FbLoginPage ()
 
@@ -47,5 +48,12 @@
    id<BookRecordDataProtocol, UITableViewDataSource> dataSource = [[TableDataSource alloc]init];
    tableViewController.dataSource = dataSource;
    [self.navigationController pushViewController:tableViewController animated:YES];
+}
+
+- (IBAction)addContactAction:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    EditContactDataController *editContactViewController = [storyboard instantiateViewControllerWithIdentifier:@"EditContactDataID"];
+    [editContactViewController setViewState:ADD];
+    [self.navigationController pushViewController:editContactViewController animated:YES];
 }
 @end

@@ -10,4 +10,5 @@
 
 @interface FbLoginPage : UIViewController
 - (IBAction)buttonOpenContactsTouchDownAction:(id)sender;
+- (IBAction)addContactAction:(id)sender;
 @end

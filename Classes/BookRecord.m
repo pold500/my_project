@@ -7,6 +7,7 @@
 //
 
 #import "BookRecord.h"
+#import "BookRecordCollection.h"
 
 @interface BookRecord()
 + (int)count;
@@ -15,19 +16,15 @@
 static int theCount = 0;
 
 
-
-
-
 @implementation BookRecord
 
 - (BOOL)isEqual:(id)object {
-    return self.record_id == ((BookRecord*)object).record_id;
+    return [self.name isEqualToString:((BookRecord*)object).name];
 }
 
 - (NSUInteger)hash {
-    return self.record_id; // if the only field to determine uniqueness is `identifier`, this hashing method is enough
+    return [self.name hash]; // if the only field to determine uniqueness is `identifier`, this hashing method is enough
 }
-
 
 + (int) count { return theCount; }
 
@@ -35,8 +32,7 @@ static int theCount = 0;
 {
 
     if (self) {
-        self.record_id     = [BookRecord count];
-        theCount++;
+        self.record_id     = [BookRecordCollection getNewRecordID];
 		self.name          = [dictionary valueForKey:@"Name"         ];
 		self.second_name   = [dictionary valueForKey:@"Second Name"  ];
         self.phone_number  = [dictionary valueForKey:@"Phone Number" ];

@@ -46,13 +46,7 @@
  */
 
 #import "TheElementsAppDelegate.h"
-#import "ElementsTableViewController.h"
-
 // each data source responsible for backing our 4 varying table view controllers
-#import "ElementsSortedByNameDataSource.h"
-#import "ElementsSortedByAtomicNumberDataSource.h"
-#import "ElementsSortedBySymbolDataSource.h"
-#import "ElementsSortedByStateDataSource.h"
 #import "TableDataSource.h"
 #import "BookRecordDataProtocol.h"
 #import "RecordsTableViewController.h"
